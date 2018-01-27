@@ -41,15 +41,26 @@ app.controller('BlogCtrl', function (/* $scope, $location, $http */) {
  * Controls all other Pages
  */
 app.controller('PageCtrl', function (/* $scope, $location, $http */) {
-  console.log("Page Controller reporting for duty.");
+    console.log("Page Controller reporting for duty.");
 
-  // Activates the Carousel
-  $('.carousel').carousel({
-    interval: 5000
-  });
+    // Activates the Carousel
+    console.log($('#mycarousel'));
+    $('#mycarousel').carousel({ interval: 5000 });
 
-  // Activates Tooltips for Social Links
-  $('.tooltip-social').tooltip({
-    selector: "a[data-toggle=tooltip]"
-  })
-});
+    // Activates Tooltips for Social Links
+    $('.tooltip-social').tooltip({selector: "a[data-toggle=tooltip]"})
+  }
+);
+
+//This is to make available the templates like header.html and footer.html
+app.controller('templatesController', ['$scope', function ($scope) {
+  $scope.templates = [{
+    name: 'templateheader',
+    url: 'templates/header.html'
+  }, {
+    name: 'templatefooter',
+    url: 'templates/footer.html'
+  }];
+  $scope.templateHdr = $scope.templates[0];
+  $scope.templateFtr = $scope.templates[1];
+}])
