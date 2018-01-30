@@ -48,7 +48,7 @@
     <!-- Our Website Content Goes Here -->
     <div ng-controller="templatesController">
         <div ng-include="templateHdr.url"></div>
-        <div ng-view></div>
+        <div ng-view onload="viewLoaded()"></div>
         <div ng-include="templateFtr.url"></div>
     </div>
    
