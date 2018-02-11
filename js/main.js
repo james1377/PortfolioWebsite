@@ -7,7 +7,10 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('tutorialWebApp', [
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate',
+  'ngSanitize',
+  'ui.bootstrap'
 ]);
 
 /**
@@ -43,10 +46,6 @@ app.controller('BlogCtrl', function (/* $scope, $location, $http */) {
 app.controller('PageCtrl', function (/*$scope, $location, $http*/) {
     console.log("Page Controller reporting for duty.");
  
-    // Activates the Carousel
-    console.log($('#mycarousel'));
-    $('#mycarousel').carousel({ interval: 5000 });
-
     // Activates Tooltips for Social Links
     $('.tooltip-social').tooltip({selector: "a[data-toggle=tooltip]"})
   }
@@ -64,3 +63,27 @@ app.controller('templatesController', ['$scope', function ($scope) {
   $scope.templateHdr = $scope.templates[0];
   $scope.templateFtr = $scope.templates[1];
 }])
+
+//Carousel Controller
+app.controller('CarouselCtrl', function ($scope) {
+  $scope.myInterval = 5000;
+  $scope.noWrapSlides = false;
+  $scope.active = 0;
+  var slides = $scope.slides = [];
+  var currIndex = 0;
+
+  $scope.addSlide = function() {
+    var newWidth = 600 + slides.length + 1;
+    //To add my own slides I would push them in here with individual image ref and text
+    slides.push({
+      image: '//unsplash.it/' + newWidth + '/300',
+      text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+      id: currIndex++
+    });
+  };
+
+  for (var i = 0; i < 4; i++) {
+    $scope.addSlide();
+  }
+
+})
