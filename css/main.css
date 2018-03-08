@@ -99,14 +99,22 @@ body {
 }
 
 .header-content{
-    height: 100vh;
-    position: absolute;
+ 
+    position: relative;
     top: 0;
     left: 0;
-    width: 100vw;
+    
     z-index:2;
     color: white;
+    
 }
+
+.v-header{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    color:#fff;
+  }
 
 .header-content h1{
     font-size:50px;
