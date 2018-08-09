@@ -11,7 +11,9 @@ var app = angular.module('tutorialWebApp', [
   'ngAnimate',
   'ngSanitize',
   'ui.bootstrap'
-]);
+]).run(['$anchorScroll', function($anchorScroll) {
+  $anchorScroll.yOffset = 50;
+}]);
 
 /**
  * Configure the Routes
@@ -19,7 +21,7 @@ var app = angular.module('tutorialWebApp', [
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     // Home
-    .when("/", {templateUrl: "partials/home.html", controller: "PageCtrl"})
+    .when("/", {templateUrl: "partials/home.html", controller: "HomeCtrl"})
     // Pages
     .when("/about", {templateUrl: "partials/about.html", controller: "PageCtrl"})
     .when("/demos", {templateUrl: "partials/demos.html", controller: "PageCtrl"})
@@ -43,13 +45,43 @@ app.controller('BlogCtrl', function (/* $scope, $location, $http */) {
 });
 
 /**
+ * Controls the Home Page
+ */
+app.controller('HomeCtrl', ['$anchorScroll', '$location', '$scope',
+  function ($anchorScroll, $location, $scope) {
+    console.log("Home Controller reporting for duty.");
+  
+    $scope.gotoAnchor = function (x) {
+      console.log("Home gotoAnchor " + x);
+     
+      var newHash = 'anchor' + x;
+      if ($location.hash() !== newHash) {
+        $location.hash('anchor' + x);
+      } else {
+        $anchorScroll();
+      }
+    };
+
+    // Activates Tooltips for Social Links
+    $('.tooltip-social').tooltip({ selector: "a[data-toggle=tooltip]" })
+
+  }
+]);
+    
+
+
+
+
+/**
  * Controls all other Pages
  */
-app.controller('PageCtrl', function (/*$scope, $location, $http*/) {
+app.controller('PageCtrl', function (/*$scope, $location,$http*/) {
     console.log("Page Controller reporting for duty.");
+    
  
     // Activates Tooltips for Social Links
-    $('.tooltip-social').tooltip({selector: "a[data-toggle=tooltip]"})
+    $('.tooltip-social').tooltip({ selector: "a[data-toggle=tooltip]" })
+  
   }
 );
 
