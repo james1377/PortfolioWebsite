@@ -111,10 +111,10 @@ body {
 
 .header-nav-logo {
     position: absolute; 
-    max-height: 4rem;
+    max-height: 3rem;
     height: auto;
     vertical-align: center;
-    top: .5rem;
+    top: .3rem;
     left: 1vh;
 }
 
@@ -151,7 +151,7 @@ body {
 }
 
 .header-primary1-logoonly {
-    max-height: 7rem;
+    max-height: 5rem;
     height: auto;
     margin-right: 2rem;
     margin-bottom: 1rem;
