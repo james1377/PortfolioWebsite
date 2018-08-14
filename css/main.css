@@ -232,6 +232,15 @@ body {
     color: #d14836;
 }
 
+/* Built with */
+.builtwith-logo {
+    max-height: 2rem;
+    height: auto;
+    margin-right: .2rem;
+    margin-bottom: .3rem;
+}
+
+
 /* Service Page Styles */
 .service-icon {
     font-size: 50px;
