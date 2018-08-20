@@ -9,7 +9,7 @@
 <html class="no-js">
 <!--<![endif]-->
 
-<head>
+<head >
 
     <!-- Meta-Data -->
     <title>JDG</title>
@@ -49,11 +49,11 @@
 
 
     <!-- Website Javascripts -->
-    <script src="js/main.js"></script>
-
+    <script src="js/main.js" ></script>
+    
 </head>
 
-<body ng-app="tutorialWebApp">
+<body ng-app="tutorialWebApp" id="anchor0">
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
         your browser</a> to improve your experience.</p>
@@ -61,6 +61,7 @@
 
     <!-- Our Website Content Goes Here -->
     <div ng-controller="templatesController">
+            
         <div ng-include="templateHdr.url"></div>
         <div ng-view onload="viewLoaded()"></div>
         <div ng-include="templateFtr.url"></div>

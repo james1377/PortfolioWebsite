@@ -65,19 +65,20 @@ app.controller('HomeCtrl', ['$anchorScroll', '$location', '$scope',
     // Activates Tooltips for Social Links
     $('.tooltip-social').tooltip({ selector: "a[data-toggle=tooltip]" })
 
+    // //Try to start video
+    // $( window ).load(function() {
+    //   $( '#hdrVideo' ).play();
+    // });
+
+    $( '#hdrVideo' ).get(0).play();
   }
 ]);
-    
-
-
-
 
 /**
  * Controls all other Pages
  */
 app.controller('PageCtrl', function (/*$scope, $location,$http*/) {
     console.log("Page Controller reporting for duty.");
-    
  
     // Activates Tooltips for Social Links
     $('.tooltip-social').tooltip({ selector: "a[data-toggle=tooltip]" })
@@ -86,7 +87,8 @@ app.controller('PageCtrl', function (/*$scope, $location,$http*/) {
 );
 
 //This is to make available the templates like header.html and footer.html
-app.controller('templatesController', ['$scope', function ($scope) {
+app.controller('templatesController', ['$anchorScroll', '$location', '$scope',
+  function ($anchorScroll, $location, $scope) {
   $scope.templates = [{
     name: 'templateheader',
     url: 'templates/header.html'
@@ -96,9 +98,27 @@ app.controller('templatesController', ['$scope', function ($scope) {
   }];
   $scope.templateHdr = $scope.templates[0];
   $scope.templateFtr = $scope.templates[1];
+
+  //Handle the scroll back to top of home page
+  $scope.gotoAnchor = function (x) {
+    console.log("Header gotoAnchor " + x + " and current location is " + $location.path());
+   
+    if ($location.path() !== '/')
+      $location.url('/');
+
+    var newHash = 'anchor' + x;
+    if ($location.hash() !== newHash) {
+      $location.hash('anchor' + x);
+    } else {
+      $anchorScroll();
+    }
+    
+  };
+    
 }])
 
-//Carousel Controller
+
+//*Not In Use *  Carousel Controller
 app.controller('CarouselCtrl', function ($scope) {
   $scope.myInterval = 5000;
   $scope.noWrapSlides = false;
